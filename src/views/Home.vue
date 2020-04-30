@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row class="text-center">
       <v-col cols="12">
-        <v-btn large to="/meetups" class="primary">Explore Meetups</v-btn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <v-btn large to="/meetups" class="primary" left>Explore Meetups</v-btn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <v-btn large to="/organize" class="info">Organize Meetups</v-btn>
       </v-col>
     </v-row>
@@ -11,12 +11,14 @@
         <v-card-text class="px-0">
           <v-carousel>
             <v-carousel-item
-              v-for="(item,i) in items"
-              :key="i"
+              v-for="item in meetups"
+              :key="item.id"
               :src="item.src"
               reverse-transition="fade-transition"
               transition="fade-transition"
-            ></v-carousel-item>
+            >
+              <div class="title text-uppercase">{{ item.title }}</div>
+            </v-carousel-item>
           </v-carousel>
         </v-card-text>
       </v-flex>
@@ -28,21 +30,30 @@
 export default {
   data() {
     return {
-      items: [
+      meetups: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
+          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+          id: "rgrgrththththththt",
+          title: "Meet ups in Ghana"
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
+          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+          id: "fbnmhmj,,k.,k.k",
+          title: "Meet ups in Nigeria"
         }
       ]
     };
   }
 };
 </script>
+
+<style scoped>
+.title {
+  position: absolute;
+  top: 367px;
+  left: 700px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 20px;
+}
+</style>

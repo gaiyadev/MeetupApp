@@ -45,7 +45,7 @@ export default {
         { title: "View Neetup", icon: "mdi-information", link: "/about" },
         { title: "Organize meetup", icon: "mdi-open-in-new", link: "/" },
         { title: "profile", icon: "chevron-left", link: "/profile" },
-        { title: "sign in", icon: "mdi-chevron-left", link: "/login" },
+        { title: "sign in", icon: "mdi-chevron-right", link: "/login" },
         { title: "sign up", icon: "mdi-open-in-new", link: "/register" }
       ]
     };
