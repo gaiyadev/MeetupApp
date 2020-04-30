@@ -27,6 +27,9 @@
     <v-content>
       <router-view></router-view>
     </v-content>
+    <v-footer class="primary">
+      <h1 class="white--text">This is the footer</h1>
+    </v-footer>
   </v-app>
 </template>
 
@@ -41,12 +44,36 @@ export default {
     return {
       drawer: false,
       menuItems: [
-        { title: "View ", icon: "mdi-chevron-left", link: "/" },
-        { title: "View Neetup", icon: "mdi-information", link: "/about" },
-        { title: "Organize meetup", icon: "mdi-open-in-new", link: "/" },
-        { title: "profile", icon: "chevron-left", link: "/profile" },
-        { title: "sign in", icon: "mdi-chevron-right", link: "/login" },
-        { title: "sign up", icon: "mdi-open-in-new", link: "/register" }
+        {
+          title: "View Meetups",
+          icon: "mdi-chevron-left",
+          link: "/"
+        },
+        {
+          title: "About",
+          icon: "mdi-information",
+          link: "/about"
+        },
+        {
+          title: "Organize meetup",
+          icon: "mdi-open-in-new",
+          link: "/organize"
+        },
+        {
+          title: "profile",
+          icon: "chevron-left",
+          link: "/profile"
+        },
+        {
+          title: "sign in",
+          icon: "mdi-chevron-right",
+          link: "/login"
+        },
+        {
+          title: "sign up",
+          icon: "mdi-open-in-new",
+          link: "/signup"
+        }
       ]
     };
     //

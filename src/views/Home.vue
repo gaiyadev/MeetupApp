@@ -9,13 +9,14 @@
     <v-layout row wrap>
       <v-flex xs12>
         <v-card-text class="px-0">
-          <v-carousel>
+          <v-carousel style="cursor: pointer;">
             <v-carousel-item
               v-for="item in meetups"
               :key="item.id"
               :src="item.src"
               reverse-transition="fade-transition"
               transition="fade-transition"
+              @click="OnLoadMeetup(item.id)"
             >
               <div class="title text-uppercase">{{ item.title }}</div>
             </v-carousel-item>
@@ -43,6 +44,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    OnLoadMeetup(id) {
+      this.$router.push("/meetups/" + id);
+    }
   }
 };
 </script>

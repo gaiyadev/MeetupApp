@@ -9,14 +9,12 @@
             <v-list-item-title class="headline mb-1 white--text">My Meetups 5</v-list-item-title>
             <v-list-item-subtitle class="white--text">Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
           </v-list-item-content>
-
-          <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
         </v-list-item>
         <v-card-actions>
-          <v-btn flat to="/meetups/:id">
-            <v-icon>mdi-chevron-right</v-icon>View Meetups
+          <v-spacer></v-spacer>
+          <v-btn text to="/meetups/1">
+            <v-icon>mdi-chevron-right</v-icon>View it
           </v-btn>
-          <v-btn flat class="info">Button</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>

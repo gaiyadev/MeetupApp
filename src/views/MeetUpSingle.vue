@@ -12,7 +12,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id harum consectetur temporibus voluptate eos possimus dolorem deserunt sed dolore magnam, ratione quaerat iure, consequuntur ipsum nemo explicabo ipsa quas quisquam.</p>
           </v-card-text>
           <v-card-actions>
-            <v-btn class="primary" flat to="/register">
+            <v-btn class="primary" large to="/register">
               <v-icon>mdi-chevron-right</v-icon>Register
             </v-btn>
           </v-card-actions>
