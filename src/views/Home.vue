@@ -29,21 +29,13 @@
 
 <script>
 export default {
+  computed: {
+    meetups() {
+      return this.$store.getters.featureMeetups;
+    }
+  },
   data() {
-    return {
-      meetups: [
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-          id: "rgrgrththththththt",
-          title: "Meet ups in Ghana"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-          id: "fbnmhmj,,k.,k.k",
-          title: "Meet ups in Nigeria"
-        }
-      ]
-    };
+    return {};
   },
   methods: {
     OnLoadMeetup(id) {

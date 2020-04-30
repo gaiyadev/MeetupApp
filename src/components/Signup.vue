@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-row class="text-center">
+    <v-row>
       <v-col cols="12">
-        <h2>WELCOME TO MEETUP APP</h2>
+        <h1>form hear</h1>
       </v-col>
     </v-row>
   </v-container>
@@ -10,6 +10,8 @@
 
 <script>
 export default {
-  data: () => ({})
+  name: "Signup",
+
+  data() {}
 };
 </script>

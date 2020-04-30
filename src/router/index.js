@@ -55,6 +55,7 @@ const routes = [
   {
     path: "/meetups/:id",
     name: "ViewMeetups",
+    props: true,
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/MeetUpSingle.vue")
   },

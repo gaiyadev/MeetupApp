@@ -4,11 +4,11 @@
       <v-col cols="12">
         <v-card>
           <v-card-title>
-            <h5 class="primary--text">Meet ups</h5>
+            <h5 class="primary--text">{{ meetup.title}}</h5>
           </v-card-title>
-          <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="334"></v-img>
+          <v-img :src=" meetup.src " height="334"></v-img>
           <v-card-text>
-            <h3 class="info--text">Meet ups</h3>
+            <h3 class="info--text"> {{ meetup.date}} </h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id harum consectetur temporibus voluptate eos possimus dolorem deserunt sed dolore magnam, ratione quaerat iure, consequuntur ipsum nemo explicabo ipsa quas quisquam.</p>
           </v-card-text>
           <v-card-actions>
@@ -21,3 +21,13 @@
     </v-row>
   </v-container>
 </template>
+<script>
+export default {
+  props: ["id"],
+  computed: {
+    meetup() {
+      return this.$store.getters.loadedMeetup(this.id);
+    }
+  }
+};
+</script>
