@@ -32,7 +32,6 @@
 
 <script>
 // import HelloWorld from "./components/HelloWorld";
-
 export default {
   name: "App",
 
@@ -42,11 +41,11 @@ export default {
     return {
       drawer: false,
       menuItems: [
-        { title: "View ", icon: "dashboard", link: "/" },
-        { title: "View Neetup", icon: "dashboard", link: "/about" },
+        { title: "View ", icon: "mdi-chevron-left", link: "/" },
+        { title: "View Neetup", icon: "mdi-information", link: "/about" },
         { title: "Organize meetup", icon: "mdi-open-in-new", link: "/" },
-        { title: "profile", icon: "mdi-open-in-new", link: "/profile" },
-        { title: "sign in", icon: "home", link: "/login" },
+        { title: "profile", icon: "chevron-left", link: "/profile" },
+        { title: "sign in", icon: "mdi-chevron-left", link: "/login" },
         { title: "sign up", icon: "mdi-open-in-new", link: "/register" }
       ]
     };
