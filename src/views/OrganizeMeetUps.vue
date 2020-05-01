@@ -146,7 +146,8 @@ export default {
         location: this.location,
         src: this.src,
         description: this.description,
-        date: new Date()
+        date: this.datePicker,
+        time: this.timePicker
       };
       this.$store.dispatch("createMeetup", meetupData);
       this.$router.push("/meetups");

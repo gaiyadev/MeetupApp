@@ -10,13 +10,15 @@ export default new Vuex.Store({
         src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
         id: "rgrgrththththththt",
         title: "Meet ups in Ghana",
+        time: "12:40",
         date: '2017-17-7'
       },
       {
         src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
         id: "fbnmhmjgfgfgfgfg",
         title: "Meet ups in Nigeria",
-        date: '2017-7-7'
+        date: '2017-7-7',
+        time: '12:00'
       }
     ],
     user: {
@@ -37,6 +39,7 @@ export default new Vuex.Store({
         src: payload.src,
         description: payload.description,
         date: payload.date,
+        time: payload.time,
         id: 'hgvheguyrgyugfreyre'
       }
       //firebase
