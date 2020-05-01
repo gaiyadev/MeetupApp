@@ -11,6 +11,7 @@ export default new Vuex.Store({
         id: "rgrgrththththththt",
         title: "Meet ups in Ghana",
         time: "12:40",
+        location: "USA",
         date: '2017-17-7'
       },
       {
@@ -18,6 +19,7 @@ export default new Vuex.Store({
         id: "fbnmhmjgfgfgfgfg",
         title: "Meet ups in Nigeria",
         date: '2017-7-7',
+        location: "USA",
         time: '12:00'
       }
     ],

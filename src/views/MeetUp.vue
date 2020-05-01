@@ -9,6 +9,7 @@
             <v-list-item-title class="headline mb-1 white--text">{{ meetup.title}}</v-list-item-title>
             <v-list-item-subtitle class="white--text">
               {{ meetup.date }} by {{ meetup.time }}
+              at {{ meetup.location}}
               <br />Greyhound divisely hello coldly fonwderfully
             </v-list-item-subtitle>
           </v-list-item-content>
