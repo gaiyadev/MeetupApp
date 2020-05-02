@@ -42,28 +42,15 @@ export default {
 
   data() {
     return {
-      drawer: false,
-      menuItems: [
-        {
-          title: "View Meetups",
-          icon: "mdi-chevron-left",
-          link: "/"
-        },
-        {
-          title: "About",
-          icon: "mdi-information",
-          link: "/about"
-        },
-        {
-          title: "Organize meetup",
-          icon: "mdi-open-in-new",
-          link: "/organize"
-        },
-        {
-          title: "profile",
-          icon: "chevron-left",
-          link: "/profile"
-        },
+      drawer: false
+      //menuItems: []
+    };
+    //
+  },
+  methods: {},
+  computed: {
+    menuItems() {
+      let menuItems = [
         {
           title: "sign in",
           icon: "mdi-chevron-right",
@@ -74,11 +61,40 @@ export default {
           icon: "mdi-open-in-new",
           link: "/signup"
         }
-      ]
-    };
-    //
-  },
-  methods: {}
+      ];
+      if (this.userIsAuthenticated) {
+        menuItems = [
+          {
+            title: "View Meetups",
+            icon: "mdi-chevron-left",
+            link: "/"
+          },
+          {
+            title: "About",
+            icon: "mdi-information",
+            link: "/about"
+          },
+          {
+            title: "Organize meetup",
+            icon: "mdi-open-in-new",
+            link: "/organize"
+          },
+          {
+            title: "profile",
+            icon: "chevron-left",
+            link: "/profile"
+          }
+        ];
+      }
+      return menuItems;
+    },
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    }
+  }
 };
 </script>
 <style scoped>
