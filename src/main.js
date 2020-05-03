@@ -5,8 +5,11 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import * as firebase from 'firebase';
+import alertComp from './components/Alert.vue'
 
 Vue.config.productionTip = false;
+Vue.component('alert', alertComp);
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnSST36jE2sUKGkR0A-L_9rnkWzF0E1io",

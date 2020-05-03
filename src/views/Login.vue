@@ -3,11 +3,14 @@
     <v-row class="text-center">
       <v-col cols="2"></v-col>
       <v-col cols="8">
+        <v-card v-if="error">
+          <alert @dismissed="onDismissed" :text="error.message" elevation="2"></alert>
+        </v-card>
         <h2>Login up for Meetup</h2>
-        <v-form @submit.prevent="onLogin" ref="form" v-model="valid" lazy-validation>
+        <v-form @submit.prevent="onLogin" ref="form" v-model="valid" lazy-validation class="mt-4">
           <!-- <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field> -->
 
-          <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+          <v-text-field v-model="email" outlined shaped :rules="emailRules" label="E-mail" required></v-text-field>
           <v-text-field
             v-model="password"
             :rules="passwordRules"
@@ -15,17 +18,20 @@
             @click:append="show1 = !show1"
             :type="show1 ? 'text' : 'password'"
             label="Password"
+            outlined
+            shaped
             required
           ></v-text-field>
 
           <v-btn
-            large
+            x-large
             type="submit"
+            block
             :disabled="!valid"
-            color="success"
+            color="primary"
             class="mr-4"
             @click="validate"
-          >Log in</v-btn>
+          >Sign in</v-btn>
         </v-form>
       </v-col>
       <v-col cols="2"></v-col>
@@ -52,10 +58,8 @@ export default {
     ]
   }),
   computed: {
-    comparePassword() {
-      return this.password !== this.confirmPassword
-        ? "Password do not match"
-        : "";
+    error() {
+      return this.$store.getters.error;
     },
     user() {
       return this.$store.getters.user;
@@ -78,6 +82,10 @@ export default {
         email: this.email,
         password: this.password
       });
+    },
+    onDismissed() {
+      this.$store.dispatch("clearError");
+      console.log("onDismissed");
     }
     // reset() {
     //   this.$refs.form.reset();

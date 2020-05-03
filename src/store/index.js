@@ -25,7 +25,9 @@ export default new Vuex.Store({
         time: '12:00'
       }
     ],
-    user: null
+    user: null,
+    loading: false,
+    error: null
   },
   mutations: {
     createMeetup(state, payload) {
@@ -33,7 +35,17 @@ export default new Vuex.Store({
     },
     setUser(state, payload) {
       state.user = payload
+    },
+    setLoading(state, payload) {
+      state.loading = payload
+    },
+    setError(state, payload) {
+      state.error = payload
+    },
+    clearError(state) {
+      state.error = null
     }
+
   },
   actions: {
     createMeetup({ commit }, payload) {
@@ -50,30 +62,41 @@ export default new Vuex.Store({
       commit('createMeetup', meetup)
     },
     signUserUps({ commit }, payload) {
+      commit('setLoading', true)
+      commit('clearError')
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then(user => {
+        commit('setLoading', false)
         const newUser = {
           id: user.user.uid,
           registerMeetups: []
         }
         commit('setUser', newUser)
       }).catch(error => {
+        commit('setLoading', false)
+        commit('setError', error)
         console.log(error)
       }
       )
     },
     signUserIn({ commit }, payload) {
+      commit('setLoading', true)
+      commit('clearError')
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
+        commit('setLoading', true)
         const newUser = {
           id: user.user.uid,
           registerMeetups: []
         }
         commit('setUser', newUser)
-
-
       }).catch(error => {
+        commit('setLoading', false)
+        commit('setError', error)
         console.log(error()
         )
       })
+    },
+    clearError({ commit }) {
+      commit('clearError')
     }
   },
   modules: {},
@@ -97,6 +120,12 @@ export default new Vuex.Store({
     },
     user(state) {
       return state.user
+    },
+    error(state) {
+      return state.error
+    },
+    loading(state) {
+      return state.loading
     }
   },
   setters: {}
