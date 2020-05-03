@@ -50,13 +50,13 @@
             x-large
             type="submit"
             :disabled="!valid"
-            :loading="loading4"
+            :loading="loading"
             color="primary"
             class="mr-4"
             @click="validate"
           >
             Sign up
-            <span class="custom-loader">
+            <span style="display: none" class="custom-loader">
               <v-icon light>cached</v-icon>
             </span>
           </v-btn>
@@ -106,8 +106,9 @@ export default {
     },
     error() {
       return this.$store.getters.error;
-    }, loading() {
-      this.$store.getters.loading
+    },
+    loading() {
+      return this.$store.getters.loading;
     }
   },
   watch: {
@@ -123,15 +124,19 @@ export default {
       this.$refs.form.validate();
     },
     onSignup() {
-      this.$store.dispatch("signUserUps", {
-        email: this.email,
-        password: this.password
-      });
+      this.$store
+        .dispatch("signUserUps", {
+          email: this.email,
+          password: this.password
+        })
+        .then(this.$toast.success("Account created succesfully"))
+        .catch(error => console.log(error));
     },
     onDismissed() {
       this.$store.dispatch("clearError");
       console.log("onDismissed");
     }
+
     // reset() {
     //   this.$refs.form.reset();
     // },
@@ -141,3 +146,42 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.custom-loader {
+  /* animation: loader 1s infinite; */
+  display: flex;
+}
+@-moz-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

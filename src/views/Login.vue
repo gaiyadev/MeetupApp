@@ -28,10 +28,16 @@
             type="submit"
             block
             :disabled="!valid"
+            :loading="loading"
             color="primary"
             class="mr-4"
             @click="validate"
-          >Sign in</v-btn>
+          >
+            Sign in
+            <span style="display: none" class="custom-loader">
+              <v-icon light>cached</v-icon>
+            </span>
+          </v-btn>
         </v-form>
       </v-col>
       <v-col cols="2"></v-col>
@@ -63,6 +69,9 @@ export default {
     },
     user() {
       return this.$store.getters.user;
+    },
+    loading() {
+      return this.$store.getters.loading;
     }
   },
   watch: {
@@ -85,7 +94,6 @@ export default {
     },
     onDismissed() {
       this.$store.dispatch("clearError");
-      console.log("onDismissed");
     }
     // reset() {
     //   this.$refs.form.reset();
@@ -96,3 +104,43 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.custom-loader {
+  /* animation: loader 1s infinite; */
+  display: flex;
+}
+@-moz-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

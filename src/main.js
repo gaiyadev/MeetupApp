@@ -6,6 +6,17 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import * as firebase from 'firebase';
 import alertComp from './components/Alert.vue'
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
+
+
+const options = {
+  // You can set your default options here
+  timeout: 3500,
+  draggable: true,
+  closeOnClick: false,
+};
+Vue.use(Toast, options);
 
 Vue.config.productionTip = false;
 Vue.component('alert', alertComp);
