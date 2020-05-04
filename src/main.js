@@ -41,6 +41,11 @@ new Vue({
   created() {
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('authSignIn', user)
+      }
+    })
     this.$store.dispatch('loadedMeetups')
   }
 }).$mount("#app");

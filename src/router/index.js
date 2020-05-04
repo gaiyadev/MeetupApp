@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import authGuard from "./auth-guard";
+
 
 Vue.use(VueRouter);
 
@@ -20,7 +22,8 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Profile.vue")
+      import(/* webpackChunkName: "about" */ "../views/Profile.vue"),
+    beforeEnter: authGuard
   },
   {
     path: "/login",
@@ -50,20 +53,25 @@ const routes = [
     path: "/meetups/new",
     name: "CreateMeetups",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MeetUpNew.vue")
+      import(/* webpackChunkName: "about" */ "../views/MeetUpNew.vue"),
+    beforeEnter: authGuard
+
   },
   {
     path: "/meetups/:id",
     name: "ViewMeetups",
     props: true,
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MeetUpSingle.vue")
+      import(/* webpackChunkName: "about" */ "../views/MeetUpSingle.vue"),
+    beforeEnter: authGuard
   },
   {
     path: "/organize",
     name: "Organize",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/OrganizeMeetUps.vue")
+      import(/* webpackChunkName: "about" */ "../views/OrganizeMeetUps.vue"),
+    beforeEnter: authGuard
+
   },
 ];
 
