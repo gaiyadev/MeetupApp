@@ -129,6 +129,10 @@ export default new Vuex.Store({
       commit('setUser', {
         id: payload.uid, registerMeetups: []
       })
+    },
+    logout({ commit }) {
+      firebase.auth().signOut()
+      commit('setUser', null)
     }
   },
   modules: {},

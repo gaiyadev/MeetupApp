@@ -47,7 +47,9 @@ const routes = [
     path: "/meetups",
     name: "Meetups",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MeetUp.vue")
+      import(/* webpackChunkName: "about" */ "../views/MeetUp.vue"),
+    beforeEnter: authGuard
+
   },
   {
     path: "/meetups/new",
@@ -63,7 +65,7 @@ const routes = [
     props: true,
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/MeetUpSingle.vue"),
-    beforeEnter: authGuard
+    // beforeEnter: authGuard
   },
   {
     path: "/organize",

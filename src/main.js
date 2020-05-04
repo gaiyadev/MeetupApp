@@ -43,7 +43,7 @@ new Vue({
     firebase.analytics();
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.$store.dispatch('authSignIn', user)
+        this.dispatch('authSignIn', user)
       }
     })
     this.$store.dispatch('loadedMeetups')

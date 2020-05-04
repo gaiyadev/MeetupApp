@@ -7,6 +7,10 @@
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-list v-if="userIsAuthenticated" @click="onLogout">
+        <v-icon>exit_to_app</v-icon>
+        <v-list-item-content>Logout</v-list-item-content>
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar app color="primary" class="py-70">
@@ -20,6 +24,9 @@
         <v-btn text v-for="item in menuItems" :key="item.title" router :to=" item.link ">
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
+        </v-btn>
+        <v-btn text v-if="userIsAuthenticated" @click="onLogout">
+          <v-icon left>exit_to_app</v-icon>Logout
         </v-btn>
       </v-toolbar-items>
       <!-- </v-toolbar> -->
@@ -47,7 +54,12 @@ export default {
     };
     //
   },
-  methods: {},
+  methods: {
+    onLogout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/");
+    }
+  },
   computed: {
     menuItems() {
       let menuItems = [
