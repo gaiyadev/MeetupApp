@@ -33,14 +33,18 @@
               label="Description"
               required
             ></v-textarea>
-            <v-text-field
-              prepend-icon="far fa-images"
-              v-model="src"
-              :counter="10000"
-              :rules="imageURLRules"
-              label="ImageURL"
-              required
-            ></v-text-field>
+            <v-btn class="primary" @click="pickFile">
+              Upload Image
+              <v-icon right dark>mdi-cloud-upload</v-icon>
+            </v-btn>
+            <input
+              type="file"
+              style="display:  none;"
+              ref="fileInput"
+              accept="image/*"
+              @change="onFilePicked"
+            />
+
             <img :src="src" alt height="200" />
             <br />
             <v-date-picker
@@ -97,6 +101,7 @@ export default {
     fullWidth: false,
     noTitle: false,
     scrollable: false,
+    image: null,
     datePicker: new Date().toISOString().substr(0, 10),
     valid: true,
     title: "",
@@ -139,16 +144,35 @@ export default {
       console.log("added");
     },
     onCreateMeetup() {
+      if (!this.image) {
+        return;
+      }
       const meetupData = {
         title: this.title,
         location: this.location,
-        src: this.src,
+        src: this.image,
         description: this.description,
         date: this.datePicker,
         time: this.timePicker
       };
       this.$store.dispatch("createMeetup", meetupData);
       this.$router.push("/meetups");
+    },
+    pickFile() {
+      this.$refs.fileInput.click();
+    },
+    onFilePicked(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      if (filename.lastIndexOf(".") <= 0) {
+        return alert("please add a valid image");
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.src = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
     }
   }
 };

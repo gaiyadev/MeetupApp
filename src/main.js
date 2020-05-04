@@ -19,7 +19,7 @@ const options = {
 Vue.use(Toast, options);
 
 Vue.config.productionTip = false;
-Vue.component('alert', alertComp);
+Vue.component("alert", alertComp);
 
 
 var firebaseConfig = {
@@ -43,10 +43,10 @@ new Vue({
     firebase.analytics();
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.dispatch('authSignIn', user)
+        this.$store.dispatch("authSignIn", user)
       }
     })
-    this.$store.dispatch('loadedMeetups')
+    this.$store.dispatch("loadedMeetups")
   }
 }).$mount("#app");
 
