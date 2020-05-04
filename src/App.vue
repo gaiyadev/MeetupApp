@@ -2,7 +2,12 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" absolute>
       <v-list nav class="py-30">
-        <v-list-item v-for="item in menuItems" :key="item.title" router :to="item.link">
+        <v-list-item
+          v-for="item in menuItems"
+          :key="item.title"
+          router
+          :to="item.link"
+        >
           <v-icon>{{ item.icon }}</v-icon>
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
@@ -15,13 +20,24 @@
 
     <v-app-bar app color="primary" class="py-70">
       <!-- <v-toolbar> -->
-      <v-app-bar-nav-icon @click.stop="drawer=!drawer" class="hidden-md-and-up"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+        class="hidden-md-and-up"
+      ></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <router-link id="logo" to="/" class="text-uppercase">Meet-Up</router-link>
+        <router-link id="logo" to="/" class="text-uppercase"
+          >Meet-Up</router-link
+        >
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn text v-for="item in menuItems" :key="item.title" router :to=" item.link ">
+        <v-btn
+          text
+          v-for="item in menuItems"
+          :key="item.title"
+          router
+          :to="item.link"
+        >
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>

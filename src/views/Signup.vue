@@ -7,7 +7,13 @@
           <alert @dismissed="onDismissed" :text="error.message"></alert>
         </v-card>
         <h2>Sign up for Meetup</h2>
-        <v-form @submit.prevent="onSignup" ref="form" class="mt-4" v-model="valid" lazy-validation>
+        <v-form
+          @submit.prevent="onSignup"
+          ref="form"
+          class="mt-4"
+          v-model="valid"
+          lazy-validation
+        >
           <!-- <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field> -->
 
           <v-text-field
@@ -66,7 +72,6 @@
     </v-row>
   </v-container>
 </template>
-
 
 <script>
 export default {

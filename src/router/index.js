@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import authGuard from "./auth-guard";
 
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -48,8 +47,7 @@ const routes = [
     name: "Meetups",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/MeetUp.vue"),
-    beforeEnter: authGuard
-
+    // beforeEnter: authGuard
   },
   {
     path: "/meetups/new",
@@ -57,14 +55,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/MeetUpNew.vue"),
     beforeEnter: authGuard
-
   },
   {
     path: "/meetups/:id",
     name: "ViewMeetups",
     props: true,
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MeetUpSingle.vue"),
+      import(/* webpackChunkName: "about" */ "../views/MeetUpSingle.vue")
     // beforeEnter: authGuard
   },
   {
@@ -73,8 +70,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/OrganizeMeetUps.vue"),
     beforeEnter: authGuard
-
-  },
+  }
 ];
 
 const router = new VueRouter({

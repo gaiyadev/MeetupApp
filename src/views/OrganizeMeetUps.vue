@@ -7,7 +7,12 @@
           <v-card-title class="primary--text text-uppercase">
             <h3>Organze meetup</h3>
           </v-card-title>
-          <v-form ref="form" @submit.prevent="onCreateMeetup" v-model="valid" lazy-validation>
+          <v-form
+            ref="form"
+            @submit.prevent="onCreateMeetup"
+            v-model="valid"
+            lazy-validation
+          >
             <v-text-field
               v-model="title"
               prepend-icon="fas fa-location-arrow"
@@ -75,11 +80,14 @@
               color="success"
               class="mr-4 danger--text"
               @click="validate"
-            >Create Meetup</v-btn>
+              >Create Meetup</v-btn
+            >
 
             <v-btn color="error" class="mr-4" @click="reset">Reset Form</v-btn>
 
-            <v-btn color="warning" @click="resetValidation">Reset Validation</v-btn>
+            <v-btn color="warning" @click="resetValidation"
+              >Reset Validation</v-btn
+            >
           </v-form>
         </v-card>
       </v-col>
@@ -150,7 +158,7 @@ export default {
       const meetupData = {
         title: this.title,
         location: this.location,
-        src: this.image,
+        image: this.image,
         description: this.description,
         date: this.datePicker,
         time: this.timePicker

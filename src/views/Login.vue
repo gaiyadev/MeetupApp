@@ -4,13 +4,30 @@
       <v-col cols="2"></v-col>
       <v-col cols="8">
         <v-card v-if="error">
-          <alert @dismissed="onDismissed" :text="error.message" elevation="2"></alert>
+          <alert
+            @dismissed="onDismissed"
+            :text="error.message"
+            elevation="2"
+          ></alert>
         </v-card>
         <h2>Login up for Meetup</h2>
-        <v-form @submit.prevent="onLogin" ref="form" v-model="valid" lazy-validation class="mt-4">
+        <v-form
+          @submit.prevent="onLogin"
+          ref="form"
+          v-model="valid"
+          lazy-validation
+          class="mt-4"
+        >
           <!-- <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field> -->
 
-          <v-text-field v-model="email" outlined shaped :rules="emailRules" label="E-mail" required></v-text-field>
+          <v-text-field
+            v-model="email"
+            outlined
+            shaped
+            :rules="emailRules"
+            label="E-mail"
+            required
+          ></v-text-field>
           <v-text-field
             v-model="password"
             :rules="passwordRules"
@@ -44,7 +61,6 @@
     </v-row>
   </v-container>
 </template>
-
 
 <script>
 export default {
@@ -104,7 +120,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .custom-loader {
