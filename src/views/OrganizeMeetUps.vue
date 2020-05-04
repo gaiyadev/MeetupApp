@@ -121,9 +121,7 @@ export default {
     imageURLRules: [
       v => !!v || "ImageURL is required",
       v => (v && v.length >= 5) || "ImageURL must be greater than 5 characters",
-      v =>
-        (v && v.length <= 10000) ||
-        "Description must be less than 50 characters"
+      v => (v && v.length <= 10000) || "Image must be less than 50 characters"
     ]
   }),
 

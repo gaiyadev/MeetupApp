@@ -8,7 +8,8 @@
     </v-row>
     <v-layout row wrap>
       <v-flex xs12>
-        <v-card-text class="px-0">
+        <v-progress-circular :size="70" v-if="loading" :width="7" color="primary" indeterminate></v-progress-circular>
+        <v-card-text class="px-0" v-if="!loading">
           <v-carousel style="cursor: pointer;">
             <v-carousel-item
               v-for="item in meetups"
@@ -32,10 +33,10 @@ export default {
   computed: {
     meetups() {
       return this.$store.getters.featureMeetups;
+    },
+    loading() {
+      return this.$store.getters.loading;
     }
-  },
-  data() {
-    return {};
   },
   methods: {
     OnLoadMeetup(id) {
@@ -53,5 +54,9 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
   padding: 20px;
+}
+.v-progress-circular {
+  margin-left: 670px;
+  margin-top: 10%;
 }
 </style>

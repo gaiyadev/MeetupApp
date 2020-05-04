@@ -9,27 +9,22 @@ export default new Vuex.Store({
   state: {
     loadedMeetups: [
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-        id: "rgrgrththththththt",
-        title: "Meet ups in Ghana",
-        time: "12:40",
-        location: "USA",
-        date: '2017-17-7'
+        src: "https://images.unsplash.com/photo-1586272778445-ccec18ea579c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=500&q=60",
+        id: 'rgregergegr',
+        title: 'static',
+        time: '6:58pm',
+        location: 'Kaduna',
+        date: '2019-05-06'
       },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-        id: "fbnmhmjgfgfgfgfg",
-        title: "Meet ups in Nigeria",
-        date: '2017-7-7',
-        location: "USA",
-        time: '12:00'
-      }
     ],
     user: null,
     loading: false,
     error: null
   },
   mutations: {
+    setLoadedMeetups(state, payload) {
+      state.loadedMeetups = payload
+    },
     createMeetup(state, payload) {
       state.loadedMeetups.push(payload)
     },
@@ -48,6 +43,29 @@ export default new Vuex.Store({
 
   },
   actions: {
+    loadedMeetups({ commit }) {
+      commit('setLoading', true)
+      firebase.database().ref('meetups').once('value').then((data) => {
+        const meetups = []
+        const obj = data.val()
+        for (let key in obj) {
+          meetups.push({
+            id: key,
+            title: obj[key].title,
+            description: obj[key].description,
+            location: obj[key].location,
+            time: obj[key].time,
+            date: obj[key].date,
+            src: obj[key].src
+          })
+        }
+        commit('setLoadedMeetups', meetups)
+        commit('setLoading', false)
+      }).catch((error) => {
+        console.log(error)
+        commit('setLoading', true)
+      })
+    },
     createMeetup({ commit }, payload) {
       const meetup = {
         title: payload.title,
@@ -56,10 +74,20 @@ export default new Vuex.Store({
         description: payload.description,
         date: payload.date,
         time: payload.time,
-        id: 'hgvheguyrgyugfreyre'
+        // id: 'hgvheguyrgyugfreyre'
       }
-      //firebase
-      commit('createMeetup', meetup)
+      //Saving to firebase database
+      firebase.database().ref('meetups').push(meetup).then((data) => {
+        const key = data.key
+        console.log(data);
+        commit('createMeetup', {
+          ...meetup,
+          id: key
+        })
+      }).catch((error) => {
+        console.error(error);
+
+      })
     },
     signUserUps({ commit }, payload) {
       commit('setLoading', true)
@@ -107,7 +135,7 @@ export default new Vuex.Store({
     },
 
     featureMeetups(state, getters) {
-      return getters.loadedMeetups.slice(0, 5);
+      return getters.loadedMeetups.slice(0, 10);
     },
     loadedMeetup(state) {
       return (meetupId) => {
