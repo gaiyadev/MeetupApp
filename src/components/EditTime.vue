@@ -2,24 +2,29 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Edit Date</v-btn>
+        <v-btn color="primary" dark v-on="on">Edit Time</v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Edit Date</span>
+          <span class="headline">Edit Time</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-date-picker
-                  style="width: 100%"
-                  class="px-2 mt-2"
-                  v-model="datePicker"
-                  :landscape="landscape"
-                  :readonly="readonly"
+                <v-time-picker
+                  class="ml-7 mt-2 mb-10"
+                  v-model="timePicker"
                   :disabled="disabled"
-                ></v-date-picker>
+                  :readonly="readonly"
+                  :landscape="landscape"
+                  :ampm-in-title="ampmInTitle"
+                  :use-seconds="useSeconds"
+                  :format="format"
+                  :full-width="fullWidth"
+                  :no-title="noTitle"
+                  :scrollable="scrollable"
+                ></v-time-picker>
               </v-col>
             </v-row>
           </v-container>
@@ -39,27 +44,26 @@ export default {
   props: ["meetup"],
   data: () => ({
     dialog: false,
+    timePicker: null,
     disabled: false,
     readonly: false,
     landscape: false,
-    datePicker: new Date().toISOString().substr(0, 10)
+    ampmInTitle: false,
+    useSeconds: false,
+    format: "ampm",
+    fullWidth: false,
+    noTitle: false,
+    scrollable: false
   }),
   methods: {
     saveChanges() {
-      // let newDate = new Date(this.meetup.date);
-      // const newDay = new Date(this.datePicker).getUTCDate();
-      // const newMonth = new Date(this.datePicker).getMonth();
-      // const newYear = new Date(this.datePicker).getUTCFullYear();
-      // newDate.setUTCDate(newDay);
-      // newDate.setUTCMonth(newMonth);
-      // newDate.setUTCFullYear(newYear);
       this.$store
         .dispatch("updateMeetUpData", {
           id: this.meetup.id,
-          date: this.datePicker
+          time: this.timePicker
         })
         .then(() => {
-          this.$toast.success("Date Updated succesfully");
+          this.$toast.success("Time Updated succesfully");
         })
         .catch(error => {
           console.log(error);

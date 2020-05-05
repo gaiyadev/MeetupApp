@@ -71,12 +71,19 @@ export default {
       ) {
         return false;
       }
-      this.$store.dispatch("updateMeetUpData", {
-        id: this.meetup.id,
-        title: this.title,
-        location: this.location,
-        description: this.description
-      });
+      this.$store
+        .dispatch("updateMeetUpData", {
+          id: this.meetup.id,
+          title: this.title,
+          location: this.location,
+          description: this.description
+        })
+        .then(() => {
+          this.$toast.success("MeetUp Updated succesfully");
+        })
+        .catch(error => {
+          console.log(error);
+        });
       this.dialog = false;
     }
   },

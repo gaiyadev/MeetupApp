@@ -10,6 +10,9 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import editMeetupDialog from "./components/EditMeetUp.vue";
 import editDateDialog from "./components/EditDate.vue";
+import editTimeDialog from "./components/EditTime.vue";
+
+window.Fire = new Vue();
 
 const options = {
   // You can set your default options here
@@ -23,6 +26,7 @@ Vue.config.productionTip = false;
 Vue.component("alert", alertComp);
 Vue.component("editMeetupDialog", editMeetupDialog);
 Vue.component("editDateDialog", editDateDialog);
+Vue.component("editTimeDialog", editTimeDialog);
 
 
 var firebaseConfig = {

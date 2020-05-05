@@ -10,19 +10,23 @@
               <editMeetupDialog :meetup="meetup"></editMeetupDialog>
             </template>
           </v-card-title>
-
           <v-img :src="meetup.src" height="334"></v-img>
           <v-card-text>
             <h3 class="info--text">
-              {{ meetup.date }} by {{ meetup.time }} ait
+              {{ meetup.date }} at {{ meetup.time }} ait
               {{ meetup.location }}
             </h3>
             <template v-if="createdCreator">
               <v-spacer></v-spacer>
               <editDateDialog :meetup="meetup"></editDateDialog>
             </template>
+            <v-spacer></v-spacer>
             <p>{{meetup.description }}</p>
           </v-card-text>
+          <template v-if="createdCreator">
+            <v-spacer></v-spacer>
+            <editTimeDialog :meetup="meetup"></editTimeDialog>
+          </template>
           <v-card-actions>
             <v-btn class="primary" large to="/register">
               <v-icon>mdi-chevron-right</v-icon>Register
@@ -56,7 +60,7 @@ export default {
   created() {
     setInterval(() => {
       this.$store.dispatch("loadedMeetups");
-    }, 2000);
+    }, 30000);
   }
 };
 </script>
