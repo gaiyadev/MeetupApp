@@ -11,6 +11,7 @@ import "vue-toastification/dist/index.css";
 import editMeetupDialog from "./components/EditMeetUp.vue";
 import editDateDialog from "./components/EditDate.vue";
 import editTimeDialog from "./components/EditTime.vue";
+import registerDialog from "./components/Register.vue";
 
 window.Fire = new Vue();
 
@@ -27,6 +28,7 @@ Vue.component("alert", alertComp);
 Vue.component("editMeetupDialog", editMeetupDialog);
 Vue.component("editDateDialog", editDateDialog);
 Vue.component("editTimeDialog", editTimeDialog);
+Vue.component("registerDialog", registerDialog);
 
 
 var firebaseConfig = {

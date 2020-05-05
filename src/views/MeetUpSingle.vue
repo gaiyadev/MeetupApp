@@ -28,9 +28,10 @@
             <editTimeDialog :meetup="meetup"></editTimeDialog>
           </template>
           <v-card-actions>
-            <v-btn class="primary" large to="/register">
-              <v-icon>mdi-chevron-right</v-icon>Register
-            </v-btn>
+            <v-spacer></v-spacer>
+            <registerDialog>
+              <v-icon>mdi-chevron-right</v-icon>
+            </registerDialog>
           </v-card-actions>
         </v-card>
       </v-col>

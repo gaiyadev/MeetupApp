@@ -19,9 +19,13 @@ export default new Vuex.Store({
     ],
     user: null,
     loading: false,
-    error: null
+    error: null,
+    registerForMeetups: null
   },
   mutations: {
+    registerMeetups(state, payload) {
+      state.registerForMeetups = payload
+    },
     setLoadedMeetups(state, payload) {
       state.loadedMeetups = payload;
     },
@@ -227,6 +231,20 @@ export default new Vuex.Store({
         commit("setLoading", false);
         console.log(error);
       });
+    },
+    registerForMeetups({ commit }, payload) {
+      commit("setLoading", true);
+      const register = {
+        name: payload.name,
+        location: payload.location,
+        email: payload.email,
+      };
+      firebase.database().ref("Register").push(register).then((data) => {
+        commit("registerMeetups", register)
+        console.log(data);
+      }).catch((error) => {
+        console.log(error);
+      })
     }
   },
 
