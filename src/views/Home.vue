@@ -2,20 +2,13 @@
   <v-container fluid>
     <v-row class="text-center">
       <v-col cols="12">
-        <v-btn large to="/meetups" class="primary" left>Explore Meetups</v-btn
-        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <v-btn large to="/meetups" class="primary" left>Explore Meetups</v-btn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <v-btn large to="/organize" class="info">Organize Meetups</v-btn>
       </v-col>
     </v-row>
     <v-layout row wrap>
       <v-flex xs12>
-        <v-progress-circular
-          :size="70"
-          v-if="loading"
-          :width="7"
-          color="primary"
-          indeterminate
-        ></v-progress-circular>
+        <v-progress-circular :size="70" v-if="loading" :width="7" color="primary" indeterminate></v-progress-circular>
         <v-card-text class="px-0" v-if="!loading">
           <v-carousel style="cursor: pointer;">
             <v-carousel-item
@@ -65,5 +58,18 @@ export default {
 .v-progress-circular {
   margin-left: 670px;
   margin-top: 10%;
+}
+@media screen and (min-width: 480px) {
+  .v-progress-circular {
+    margin-left: 210px;
+    margin-top: 100px;
+  }
+}
+
+@media screen and (min-width: 180px) {
+  .v-progress-circular {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
 }
 </style>

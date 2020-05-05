@@ -235,6 +235,8 @@ export default new Vuex.Store({
     registerForMeetups({ commit }, payload) {
       commit("setLoading", true);
       const register = {
+        id: payload.id,
+        title: payload.title,
         name: payload.name,
         location: payload.location,
         email: payload.email,

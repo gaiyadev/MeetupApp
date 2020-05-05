@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  props: ["meetupId"],
+  props: ["meetup"],
   data: () => ({
     dialog: false,
     name: "",
@@ -54,6 +54,8 @@ export default {
       }
       this.$store
         .dispatch("registerForMeetups", {
+          id: this.meetup.id,
+          title: this.meetup.title,
           name: this.name,
           email: this.email,
           location: this.location

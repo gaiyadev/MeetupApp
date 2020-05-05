@@ -21,7 +21,7 @@
               <editDateDialog :meetup="meetup"></editDateDialog>
             </template>
             <v-spacer></v-spacer>
-            <p>{{meetup.description }}</p>
+            <p>{{ meetup.description }}</p>
           </v-card-text>
           <template v-if="createdCreator">
             <v-spacer></v-spacer>
@@ -29,7 +29,7 @@
           </template>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <registerDialog>
+            <registerDialog :meetup="meetup" v-if="!isUserAuthenticated">
               <v-icon>mdi-chevron-right</v-icon>
             </registerDialog>
           </v-card-actions>
