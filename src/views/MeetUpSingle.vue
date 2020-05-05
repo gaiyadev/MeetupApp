@@ -47,7 +47,12 @@ export default {
         return false;
       }
       return this.$store.getters.user.id === this.meetup.createdBy;
+    },    
+  },
+  created() {
+      setInterval(() => {
+        this.$store.dispatch("loadedMeetups");
+      }, 2000);
     }
-  }
 };
 </script>

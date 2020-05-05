@@ -49,4 +49,5 @@ new Vue({
     });
     this.$store.dispatch("loadedMeetups");
   }
+
 }).$mount("#app");
