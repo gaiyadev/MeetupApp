@@ -7,13 +7,7 @@
           <alert @dismissed="onDismissed" :text="error.message"></alert>
         </v-card>
         <h2>Sign up for Meetup</h2>
-        <v-form
-          @submit.prevent="onSignup"
-          ref="form"
-          class="mt-4"
-          v-model="valid"
-          lazy-validation
-        >
+        <v-form @submit.prevent="onSignup" ref="form" class="mt-4" v-model="valid" lazy-validation>
           <!-- <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field> -->
 
           <v-text-field
@@ -40,7 +34,7 @@
           <v-text-field
             v-model="confirmPassword"
             error-count="2"
-            :rules="confirmPasswordRules"
+            :rules="confirmPasswordRules.concat(comparePassword) "
             :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="show2 = !show2"
             :type="show2 ? 'text' : 'password'"
@@ -102,6 +96,7 @@ export default {
   }),
   computed: {
     comparePassword() {
+      this.valid;
       return this.password !== this.confirmPassword
         ? "Password do not match"
         : "";
