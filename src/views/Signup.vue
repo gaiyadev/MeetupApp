@@ -34,7 +34,7 @@
           <v-text-field
             v-model="confirmPassword"
             error-count="2"
-            :rules="confirmPasswordRules.concat(comparePassword) "
+            :rules="confirmPasswordRules "
             :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="show2 = !show2"
             :type="show2 ? 'text' : 'password'"
@@ -69,38 +69,43 @@
 
 <script>
 export default {
-  data: () => ({
-    valid: true,
-    show1: false,
-    show2: false,
-    email: "",
-    emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ],
-    password: "",
-    passwordRules: [
-      v => !!v || "Password is required",
-      v => (v && v.length >= 8) || "Password must be less than 8 characters",
-      v => /(?=.*[A-Z])/.test(v) || "Must have one uppercase character",
-      v => /(?=.*\d)/.test(v) || "Must have one number"
-      // v => /([!@$%<>*''])/.test(v) || "Must have one special character [!@#$%]"
-    ],
-    confirmPassword: "",
-    confirmPasswordRules: [
-      v => !!v || "Confirm Password is required",
-      v =>
-        (v && v.length >= 8) ||
-        "Confirm Password must be less than 8 characters"
-    ]
-  }),
+  data() {
+    return {
+      valid: true,
+      show1: false,
+      show2: false,
+      email: "",
+      emailRules: [
+        v => !!v || "E-mail is required",
+        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      ],
+      password: "",
+      passwordRules: [
+        v => !!v || "Password is required",
+        v => (v && v.length >= 8) || "Password must be less than 8 characters",
+        v => /(?=.*[A-Z])/.test(v) || "Must have one uppercase character",
+        v => /(?=.*\d)/.test(v) || "Must have one number"
+        // v => /([!@$%<>*''])/.test(v) || "Must have one special character [!@#$%]"
+      ],
+      confirmPassword: "",
+      confirmPasswordRules: [
+        v => !!v || "Confirm Password is required",
+        v =>
+          (v && v.length >= 8) ||
+          "Confirm Password must be less than 8 characters",
+        v => !!v || "Confirm password",
+        v => v === this.password || "Passwords do not match"
+      ]
+    };
+  },
+
   computed: {
-    comparePassword() {
-      this.valid;
-      return this.password !== this.confirmPassword
-        ? "Password do not match"
-        : "";
-    },
+    // comparePassword() {
+    //   this.valid;
+    //   return this.password !== this.confirmPassword
+    //     ? "Password do not match"
+    //     : "";
+    // },
     user() {
       return this.$store.getters.user;
     },
@@ -136,13 +141,6 @@ export default {
       this.$store.dispatch("clearError");
       console.log("onDismissed");
     }
-
-    // reset() {
-    //   this.$refs.form.reset();
-    // },
-    // resetValidation() {
-    //   this.$refs.form.resetValidation();
-    // }
   }
 };
 </script>
