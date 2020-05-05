@@ -5,19 +5,19 @@
         <v-card>
           <v-card-title>
             <h5 class="primary--text">{{ meetup.title }}</h5>
+            <template v-if="createdCreator">
+              <v-spacer></v-spacer>
+              <editMeetupDialog :meetup="meetup"></editMeetupDialog>
+            </template>
           </v-card-title>
+
           <v-img :src="meetup.src" height="334"></v-img>
           <v-card-text>
             <h3 class="info--text">
               {{ meetup.date }} by {{ meetup.time }} ait
               {{ meetup.location }}
             </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id harum
-              consectetur temporibus voluptate eos possimus dolorem deserunt sed
-              dolore magnam, ratione quaerat iure, consequuntur ipsum nemo
-              explicabo ipsa quas quisquam.
-            </p>
+            <p>{{meetup.description }}</p>
           </v-card-text>
           <v-card-actions>
             <v-btn class="primary" large to="/register">
@@ -35,6 +35,18 @@ export default {
   computed: {
     meetup() {
       return this.$store.getters.loadedMeetup(this.id);
+    },
+    isUserAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    },
+    createdCreator() {
+      if (!this.isUserAuthenticated) {
+        return false;
+      }
+      return this.$store.getters.user.id === this.meetup.createdBy;
     }
   }
 };

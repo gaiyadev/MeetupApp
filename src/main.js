@@ -8,6 +8,7 @@ import * as firebase from "firebase";
 import alertComp from "./components/Alert.vue";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import editMeetupDialog from "./components/EditMeetUp.vue";
 
 const options = {
   // You can set your default options here
@@ -19,6 +20,8 @@ Vue.use(Toast, options);
 
 Vue.config.productionTip = false;
 Vue.component("alert", alertComp);
+Vue.component("editMeetupDialog", editMeetupDialog);
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyBnSST36jE2sUKGkR0A-L_9rnkWzF0E1io",

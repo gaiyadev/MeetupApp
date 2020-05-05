@@ -28,6 +28,26 @@ export default new Vuex.Store({
     createMeetup(state, payload) {
       state.loadedMeetups.push(payload);
     },
+    updateMeetUp(state, payload) {
+      const meetup = state.setLoadedMeetups.find(meetup => {
+        return meetup.id === payload.id;
+      });
+      if (payload.title) {
+        meetup.title = payload.title;
+      }
+      if (payload.location) {
+        meetup.location = payload.location;
+      }
+      if (payload.description) {
+        meetup.description = payload.description;
+      }
+      if (payload.date) {
+        meetup.date = payload.date;
+      }
+      if (payload.time) {
+        meetup.time = payload.time;
+      }
+    },
     setUser(state, payload) {
       state.user = payload;
     },
@@ -178,10 +198,38 @@ export default new Vuex.Store({
       });
     },
     logout({ commit }) {
-      firebase.auth().signOut();
+      firebase.auth().signOut().then(response => console.log(response)).catch(error => console.log(error));
       commit("setUser", null);
+    },
+    updateMeetUpData({ commit }, payload) {
+      commit("setLoading", true);
+      const updateObj = {};
+      if (payload.title) {
+        updateObj.title = payload.title
+      }
+      if (payload.location) {
+        updateObj.location = payload.location
+      }
+      if (payload.description) {
+        updateObj.description = payload.description
+      }
+      if (payload.date) {
+        updateObj.date = payload.date
+      }
+      if (payload.time) {
+        updateObj.time = payload.time
+      }
+      firebase.database().ref("meetups").child(payload.id).update(updateObj).then(() => {
+        commit("setLoading", false);
+        commit('updateMeetUp', payload);
+
+      }).catch((error) => {
+        commit("setLoading", false);
+        console.log(error);
+      });
     }
   },
+
   modules: {},
   getters: {
     loadedMeetups(state) {
