@@ -9,6 +9,7 @@ import alertComp from "./components/Alert.vue";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import editMeetupDialog from "./components/EditMeetUp.vue";
+import editDateDialog from "./components/EditDate.vue";
 
 const options = {
   // You can set your default options here
@@ -21,6 +22,7 @@ Vue.use(Toast, options);
 Vue.config.productionTip = false;
 Vue.component("alert", alertComp);
 Vue.component("editMeetupDialog", editMeetupDialog);
+Vue.component("editDateDialog", editDateDialog);
 
 
 var firebaseConfig = {

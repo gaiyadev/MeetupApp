@@ -17,6 +17,10 @@
               {{ meetup.date }} by {{ meetup.time }} ait
               {{ meetup.location }}
             </h3>
+            <template v-if="createdCreator">
+              <v-spacer></v-spacer>
+              <editDateDialog :meetup="meetup"></editDateDialog>
+            </template>
             <p>{{meetup.description }}</p>
           </v-card-text>
           <v-card-actions>
@@ -47,12 +51,12 @@ export default {
         return false;
       }
       return this.$store.getters.user.id === this.meetup.createdBy;
-    },    
+    }
   },
   created() {
-      setInterval(() => {
-        this.$store.dispatch("loadedMeetups");
-      }, 2000);
-    }
+    setInterval(() => {
+      this.$store.dispatch("loadedMeetups");
+    }, 2000);
+  }
 };
 </script>
